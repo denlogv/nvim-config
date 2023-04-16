@@ -2,7 +2,9 @@
 
 local Util = require("lazyvim.util")
 
-local function map(mode, lhs, rhs, opts)
+-- dotfile("utils.lua")
+
+function map(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
   ---@cast keys LazyKeysHandler
   -- do not create the keymap if a lazy keys handler exists
@@ -13,8 +15,8 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
-map("i", "jj", "<ESC>", { desc = "More convenient way to escape" })
-map("v", "jj", "<ESC>", { desc = "More convenient way to escape" })
+map("i", "jk", "<ESC>", { desc = "More convenient way to escape" })
+map("v", "jk", "<ESC>", { desc = "More convenient way to escape" })
 
 -- better up/down
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
