@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
-    ensure_installed = { "lua", "python", "vimdoc" },
+    ensure_installed = { "lua", "python", "java", "vimdoc" },
   },
 }
