@@ -1,26 +1,26 @@
 return {
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "elflord",
+    {
+        "LazyVim/LazyVim",
+        opts = {
+            colorscheme = "murphy",
+        },
     },
-  },
-  {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      local logo = [[
+    {
+        "goolord/alpha-nvim",
+        opts = function(_, opts)
+            local logo = [[
 ▓█████▄ ▓█████  ███▄    █ ██▒   █▓ ██▓ ███▄ ▄███▓
 ▒██▀ ██▌▓█   ▀  ██ ▀█   █▓██░   █▒▓██▒▓██▒▀█▀ ██▒
 ░██   █▌▒███   ▓██  ▀█ ██▒▓██  █▒░▒██▒▓██    ▓██░
-░▓█▄   ▌▒▓█  ▄ ▓██▒  ▐▌██▒ ▒██ █░░░██░▒██    ▒██ 
+░▓█▄   ▌▒▓█  ▄ ▓██▒  ▐▌██▒ ▒██ █░░░██░▒██    ▒██
 ░▒████▓ ░▒████▒▒██░   ▓██░  ▒▀█░  ░██░▒██▒   ░██▒
  ▒▒▓  ▒ ░░ ▒░ ░░ ▒░   ▒ ▒   ░ ▐░  ░▓  ░ ▒░   ░  ░
  ░ ▒  ▒  ░ ░  ░░ ░░   ░ ▒░  ░ ░░   ▒ ░░  ░      ░
- ░ ░  ░    ░      ░   ░ ░     ░░   ▒ ░░      ░   
-   ░       ░  ░         ░      ░   ░         ░   
- ░                            ░                  
+ ░ ░  ░    ░      ░   ░ ░     ░░   ▒ ░░      ░
+   ░       ░  ░         ░      ░   ░         ░
+ ░                            ░
       ]]
-      opts.section.header.val = vim.split(logo, "\n", { trimempty = true })
-    end,
-  },
+            opts.section.header.val = vim.split(logo, "\n", { trimempty = true })
+        end,
+    },
 }
