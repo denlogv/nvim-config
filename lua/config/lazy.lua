@@ -16,6 +16,7 @@ require("lazy").setup({
         -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
         { import = "lazyvim.plugins.extras.dap.core" },
         { "mfussenegger/nvim-jdtls" },
+        { "ThePrimeagen/harpoon" },
         -- import/override with your plugins
         { import = "plugins" },
     },

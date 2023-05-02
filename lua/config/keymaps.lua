@@ -151,3 +151,20 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+-- harpoon
+map("n", "<leader>ho", function() require("harpoon.ui").toggle_quick_menu() end, { desc = "Harpoon: open menu" })
+map("n", "<leader>hm", function() require("harpoon.mark").add_file() end, { desc = "Harpoon: mark file" })
+map("n", "<leader>hf", function() require("harpoon.ui").nav_next() end, { desc = "Harpoon: go to next file" })
+map("n", "<leader>hp", function() require("harpoon.ui").nav_prev() end, { desc = "Harpoon: go to previous file" })
+map("n", "<leader>ht", function() require("harpoon.term").gotoTerminal(1) end, { desc = "Harpoon: open terminal 1" })
+
+local function nav_file(id)
+  local function wrapper()
+    require("harpoon.ui").nav_file(id)
+  end
+  return wrapper
+end
+for i = 1, 10 do
+  map("n", string.format("<leader>h%d", i), nav_file(i), { desc = "Harpoon: navigate to file {id}" })
+end
