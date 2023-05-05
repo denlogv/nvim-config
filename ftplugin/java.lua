@@ -3,7 +3,7 @@ local jdtls = require("jdtls")
 
 -- File types that signify a Java project's root directory. This will be
 -- used by eclipse to determine what constitutes a workspace
-local root_markers = { "gradlew", "mvnw", ".git" }
+-- local root_markers = { "gradlew", "mvnw", ".git" }
 local root_dir = home .. "/git/libra" -- vim.fn.getcwd() -- require("jdtls.setup").find_root(root_markers)
 
 -- eclipse.jdt.ls stores project specific data within a folder. If you are working
@@ -11,7 +11,8 @@ local root_dir = home .. "/git/libra" -- vim.fn.getcwd() -- require("jdtls.setup
 -- This variable is used to configure eclipse to use the directory name of the
 -- current project found using the root_marker as the folder for project specific data.
 -- local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
-local workspace_folder = home .. "/.local/eclipse/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local project = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local workspace_folder = home .. "/.local/eclipse/" .. project
 
 -- Helper function for creating keymaps
 function nnoremap(rhs, lhs, bufopts, desc)
@@ -31,12 +32,12 @@ local on_attach = function(client, bufnr)
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, bufopts, "List workspace folders")
     nnoremap("<space>rn", vim.lsp.buf.rename, bufopts, "Rename")
-    nnoremap("<space>f", function()
+    nnoremap("<space>jff", function()
         vim.lsp.buf.format({ async = true })
     end, bufopts, "Format file")
 
     -- Java extensions provided by jdtls
-    nnoremap("<C-o>", jdtls.organize_imports, bufopts, "Organize imports")
+    nnoremap("<space>oi", jdtls.organize_imports, bufopts, "Organize imports")
     nnoremap("<space>ev", jdtls.extract_variable, bufopts, "Extract variable")
     nnoremap("<space>ec", jdtls.extract_constant, bufopts, "Extract constant")
     vim.keymap.set(
@@ -87,7 +88,7 @@ local config = {
                 enabled = true,
             },
             references = {
-                includeDecompiledSources = true,
+                includeDecompiledSources = false, --true,
             },
             inlayHints = {
                 parameterNames = {
@@ -193,9 +194,3 @@ jdtls.start_or_attach(config)
 vim.cmd(
     [[command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)]]
 )
-
--- local M = {}
--- function M.make_jdtls_config()
---     return config
--- end
--- return M
