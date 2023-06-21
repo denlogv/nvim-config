@@ -17,6 +17,8 @@ end
 
 map("i", "jk", "<ESC>", { desc = "More convenient way to escape" })
 map("v", "jk", "<ESC>", { desc = "More convenient way to escape" })
+map("i", "kj", "<ESC>", { desc = "More convenient way to escape" })
+map("v", "kj", "<ESC>", { desc = "More convenient way to escape" })
 
 -- better up/down
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -168,3 +170,14 @@ end
 for i = 1, 10 do
   map("n", string.format("<leader>h%d", i), nav_file(i), { desc = "Harpoon: navigate to file {id}" })
 end
+
+-- hop.nvim
+-- place this in one of your configuration file(s)
+-- local directions = require('hop.hint').HintDirection
+local hop = require('hop')
+map("n", "fa", hop.hint_anywhere, { desc = "Hop: Jump anywhere" })
+map("n", "f", hop.hint_char1, { desc = "Hop: Jump anywhere" })
+
+-- vim.keymap.set('', 'T', function()
+--   hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+-- end, {remap=true})
