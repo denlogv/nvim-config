@@ -17,10 +17,8 @@ end
 
 map("n", "<S-v>", "v$", { desc = "Select till the end of line" })
 map("n", "vv", "0v$", { desc = "Select whole line" })
-map("i", "jk", "<ESC>", { desc = "More convenient way to escape" })
-map("v", "jk", "<ESC>", { desc = "More convenient way to escape" })
-map("i", "kj", "<ESC>", { desc = "More convenient way to escape" })
-map("v", "kj", "<ESC>", { desc = "More convenient way to escape" })
+map({"i", "v"}, "jk", "<ESC>", { desc = "More convenient way to escape" })
+map({"i", "v"}, "kj", "<ESC>", { desc = "More convenient way to escape" })
 
 -- better up/down
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

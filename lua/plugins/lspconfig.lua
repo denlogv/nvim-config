@@ -4,8 +4,12 @@
 -- })(
 local get_python_ws_root = function(filename, bufnr)
     local root = vim.fs.dirname(vim.fs.find({ "setup.py", "pyproject.toml" }, { upward = true })[1])
+    if (root == nil) then
+        return "."
+    end
     return root .. "/src"
 end
+
 return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -139,7 +143,7 @@ return {
             require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
         end
         -- setup autoformat
-        require("lazyvim.plugins.lsp.format").setup(opts)
+        -- require("lazyvim.plugins.lsp.format").setup(opts)
         -- setup formatting and keymaps
         Util.on_attach(function(client, buffer)
             require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
